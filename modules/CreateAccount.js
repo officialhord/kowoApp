@@ -36,6 +36,8 @@ export default function CreateAccount({ navigation }) {
   const onHandleChangeDropdown = (event, name, value) => {
     setData({...data, [name]: value});
   };
+
+  const url = APIs.baseURL;
   
   const submit = () => {
     setProcessing(true);
@@ -46,7 +48,7 @@ export default function CreateAccount({ navigation }) {
         };
         if(!data.accountName) { return 'Please enter Account name' };
         if(!data.targetAmount) { return 'Please enter Amount to be saved' };
-        if(!data.frequency) { return 'Please enter Saving Frequency' };
+            //  if(!data.frequency) { return 'Please enter Saving Frequency' };
         if(!data.withrawalDate) { return 'Please enter Withdrawal Date' };
       }
       setError(errorMessage);
@@ -56,7 +58,7 @@ export default function CreateAccount({ navigation }) {
     }
     if(data.accountName && data.targetAmount && data.frequency && data.withrawalDate) {
       axios
-        .post('https://kintrust-api.herokuapp.com/account-service/fetch-user-accounts', {
+        .post(`${url}account-service/create-account`, {
           ...data
         }, {
         headers: {
@@ -74,10 +76,11 @@ export default function CreateAccount({ navigation }) {
             setError(errorMessage);
           }
         }
+        console.log(response)
         return setProcessing(false);
       })
       .catch(error => {
-        //console.error(error);
+        console.error(error);
         setError('Network Error!');
         return setProcessing(false);
       });

@@ -10,6 +10,7 @@ import Header from './Header';
 import BackButton from './BackButton';
 import ModalAlert from './ModalAlert';
 import { Mail, Warning } from './Icon';
+import APIs from './APIs';
 
 export default function Register({ navigation }) {
   const [ data, setData ] = useState({
@@ -71,9 +72,11 @@ export default function Register({ navigation }) {
     } else {
       //
     }
+
+    const url = APIs.baseURL;
     if(data.fullName && data.email && data.phoneNumber && data.dateOfBirth && data.password && data.cpassword) {
       axios
-        .post('https://kintrust-api.herokuapp.com/useraccess/register-user', {
+        .post(`${url}useraccess/register-user`, {
           ...data
         }, {
         headers: {
@@ -172,7 +175,7 @@ export default function Register({ navigation }) {
           </Text>
           <TouchableOpacity
             activeOpacity={0.6}
-            onPress={() => WebBrowser.openBrowserAsync('https://kintrust-api.herokuapp.com')}>
+            onPress={() => WebBrowser.openBrowserAsync(url)}>
             <Text style={[styles.text_xs, styles.text_color_primary, styles.fw_bold]}>Terms & Conditions and Policy Privacy </Text>
           </TouchableOpacity>
         </Text>

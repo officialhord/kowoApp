@@ -16,3 +16,7 @@ web-build/
 # misc
 android/keystores/release.keystore
 credentials.json
+.idea/kowoApp.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml

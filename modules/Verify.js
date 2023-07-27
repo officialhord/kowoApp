@@ -42,7 +42,7 @@ export default function Verify({ route, navigation }) {
     }
     if(data.email && data.tokenValue) {
       axios
-        .post('https://kintrust-api.herokuapp.com/useraccess/verify-user', {
+        .post('https://router-kowoapp-5f04b6aa8916.herokuapp.com/useraccess/verify-user', {
           ...data
         }, {
         headers: {

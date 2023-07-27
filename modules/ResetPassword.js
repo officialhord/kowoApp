@@ -8,6 +8,7 @@ import Header from './Header';
 import BackButton from './BackButton';
 import ModalAlert from './ModalAlert';
 import { Success, Warning } from './Icon';
+import APIs from './APIs';
 
 export default function ResetPassword({ route, navigation }) {
   const { email, reset } = route.params;
@@ -25,6 +26,7 @@ export default function ResetPassword({ route, navigation }) {
     setData({...data, [name]: value});
   };
   
+  const url = APIs.baseURL;
   const submit = () => {
     setProcessing(true);
     if (!data.password) {
@@ -45,7 +47,7 @@ export default function ResetPassword({ route, navigation }) {
     }
     if(data.email) {
       axios
-        .post('https://kintrust-api.herokuapp.com/useraccess/reset-password', {
+        .post(`${url}useraccess/reset-password`, {
           ...data
         }, {
         headers: {

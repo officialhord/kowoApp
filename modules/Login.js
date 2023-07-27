@@ -9,6 +9,7 @@ import ModalAlert from './ModalAlert';
 import { Success, Error } from './Icon';
 import { AppContext } from './Context';
 import LocalAuth from './LocalAuth';
+import APIs from './APIs';
 import { setLocalData, getLocalData } from './Storage';
 
 export default function Login({ navigation }) {
@@ -26,6 +27,8 @@ export default function Login({ navigation }) {
     setData({...data, [name]: value});
   };
   
+const urlData = APIs.baseURL;
+
   const submit = (data) => {
     setProcessing(true);
     if (!data.email || !data.password) {
@@ -47,7 +50,7 @@ export default function Login({ navigation }) {
     }
     if(data.email && data.password) {
       axios
-        .post('https://kintrust-api.herokuapp.com/useraccess/login', {
+        .post(`${urlData}useraccess/login`, {
           ...data
         }, {
         headers: {
@@ -74,7 +77,7 @@ export default function Login({ navigation }) {
         return setProcessing(false);
       })
       .catch(error => {
-        //console.error(error);
+        console.error(error);
         setError('Network Error!');
         return setProcessing(false);
       });
@@ -85,7 +88,7 @@ export default function Login({ navigation }) {
     setProcessing(true);
     if(data.email && data.password) {
       axios
-        .post('https://kintrust-api.herokuapp.com/useraccess/send-verification', {
+        .post(`${urlData}useraccess/send-verification`, {
           ...data
         }, {
         headers: {

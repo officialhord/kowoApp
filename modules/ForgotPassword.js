@@ -40,7 +40,7 @@ export default function ForgotPassword({ navigation }) {
     }
     if(data.email) {
       axios
-        .post('https://kintrust-api.herokuapp.com/useraccess/send-verification', {
+        .post('https://router-kowoapp-5f04b6aa8916.herokuapp.com/useraccess/send-verification', {
           ...data
         }, {
         headers: {
